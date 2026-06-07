@@ -17,9 +17,9 @@ Module 2 : Fundamentals of Linux Operating System:
 		
 	- As a DevOps Team we can Manage the Linux Machines
 	
-		- Package Management 
-		- File Management 
-		- User Management 
+		- Package Management => software downloads are called as package management
+		- File Management => managing different types of file like .exe .rar .xml etc
+		- User Management => managing access like files,software for user   
 		- Access Management 
 		- Remote Servers Management 
 		- Process Automation(Shell Scripting)	
