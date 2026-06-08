@@ -291,3 +291,268 @@ Day 4 - 5th June 2026
 			which nginx						# Used to get the path of installation ?
 			
 			which git 
+
+######################
+Day 5 - 8th June 2026
+######################	
+
+
+- Linux	: File Management :::
+
+			Navigate to Directories/Folders :::
+
+				- pwd				# Get the Present Working Directory
+
+				- cd				# Change Directory
+				
+				- cd <dir_name> 	# Change to a specific directory				
+				
+				- cd /				# This command will take to the System root directory			
+			
+				- cd ~				# This command will take to the home directory(Default Directory) of the specific linux user
+									Eg.: 	ubuntu 	===> /home/ubuntu 
+		
+											root	===> /root
+									
+				- cd .. 			# Back to previous directory
+	
+				- ls 				# Is to List the files and Directories 
+				
+				- ll				# Long List 
+	
+		Create files/Directories :
+		
+		File Operations :
+		
+			- Open / Read / Delete / Update / Rename / Copy 
+			
+			
+		File Operations :
+		
+			- echo "Message" 				# output statement - To print msg to terminal 
+			
+			- echo "Record1" > file1.txt 	# Create/update a file with record
+		
+			- echo "Record1" >> file1.txt 	# Add New Record to a file	
+			
+			- touch <file_name>				# To Create Empty file
+			
+			- cat <file_name>				# To read the file contents 
+			
+			- File Editors :
+			
+				- vi editor					# To Create/Open a file in interactive mode				
+				
+				Eg.: 
+				
+					vi <file_name>			# To Create/Open a file in interactive mode
+					
+					
+					vi sample.txt
+					
+					press :
+					
+						i 					# go to insert mode 	
+
+						# Enter the file contents
+						# Enter the file contents
+						# Enter the file contents
+						# Enter the file contents
+					
+						esc :wq				# Save and exit from file 
+						
+						esc :q!				# exit from file without saving the changes 
+						
+						
+			- Rename a file/directory
+
+
+						mv <existing_file_name> <New_file_Name>
+						
+						Eg.: 
+						
+						mv sample1.txt dummyfile1.txt
+						
+						mv sdir2/ outputdir1
+						
+			- Delete/Remove files/Directories :
+			
+						rm <file_name>
+						
+						rm <file1_name> <file2_name>
+						
+						rm *.txt 
+						
+						rm fl1.txt f2.txt 
+						
+						rm -f s1.txt 			# Force Deletion
+						
+						rm -rf <directory_name>	# Force Delete Directories
+												
+		Create Directories :
+		
+			mkdir <New_Dir_Name> 				# Make Directory 
+			
+
+		ls 				# Get the list of files & Dirs 
+		
+		ls - a			# Get the list of all files & dirs(including hidden files and dirs)
+
+		ll				# Long Listing 
+
+
+ubuntu@ip-172-31-10-218:~$ ll
+total 96
+drwxr-x--- 11 ubuntu ubuntu 4096 Jun  8 15:24 ./
+drwxr-xr-x  3 root   root   4096 Jun  6 14:00 ../
+-rw-------  1 ubuntu ubuntu  248 Jun  8 14:43 .Xauthority
+-rw-------  1 ubuntu ubuntu   50 Jun  6 17:13 .bash_history
+-rw-r--r--  1 ubuntu ubuntu  220 Mar 31  2024 .bash_logout
+-rw-r--r--  1 ubuntu ubuntu 3771 Mar 31  2024 .bashrc
+drwx------  2 ubuntu ubuntu 4096 Jun  6 14:00 .cache/
+-rw-r--r--  1 ubuntu ubuntu  807 Mar 31  2024 .profile
+-rw-rw-r--  1 ubuntu ubuntu    5 Jun  8 15:24 .s1.txt
+drwx------  2 ubuntu ubuntu 4096 Jun  6 14:00 .ssh/
+-rw-r--r--  1 ubuntu ubuntu    0 Jun  6 14:00 .sudo_as_admin_successful
+drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:24 .tempdir1/
+-rw-------  1 ubuntu ubuntu 1342 Jun  8 15:14 .viminfo
+drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:18 demodir1/
+drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:19 demodir2/
+drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:19 demodir3/
+-rw-rw-r--  1 ubuntu ubuntu    5 Jun  8 15:20 dir1
+-rw-rw-r--  1 ubuntu ubuntu    5 Jun  8 15:20 dir2
+-rw-rw-r--  1 ubuntu ubuntu    5 Jun  8 15:20 dir3
+-rw-rw-r--  1 ubuntu ubuntu   16 Jun  8 15:07 file1.txt
+drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:20 file2.java/
+
+
+	File :
+	
+		simple txt file 
+		
+		script file 				# Executable
+		
+		artifacts(binaries)			# Executable
+		
+		
+		Owner 
+		
+		Group User 
+		
+		Public User 
+		
+	- File Access Management :::
+	
+	    -rw-rw-r--  1 ubuntu ubuntu   16 Jun  8 15:07 file1.txt
+		
+		----------
+		
+		-									# Denote dir or file (Possible value:  d or - )
+												'd'  Denotes Directory
+												'-'  Denotes File 
+												
+												
+		 ---								# Denote the Owner Level Access 
+												Possible Values: r / w / x 
+												r - Read only Access 
+												w - Write Access 
+												x - Execute Access 
+		
+			---								# Denote the Group Level Access
+												Possible Values: r / w / x 
+												r - Read only Access 
+												w - Write Access 
+												x - Execute Access
+
+			   ---							# Denote the Public User Level Access
+												Possible Values: r / w / x 
+												r - Read only Access 
+												w - Write Access 
+												x - Execute Access			
+		
+		
+	Eg.: 
+	
+		Development_Team :
+		
+			developer1,2,3,4,5
+		
+		Testing Team :
+			user1,2,3,4,5
+		
+		
+		developer1 --> login.py
+		
+		-rwxrwxr--  1 developer1 Development_Team   16 Jun  8 15:07 login.py
+		
+		
+	- File Access Mode:
+	
+		chmod <Access_Level> <File/Directory_Name>
+		
+		
+		https://chmod-calculator.com/
+
+
+
+	- User & Access Management :::::
+	
+	
+		Create Linux User :
+
+		SSH Connection :	Secure SHell Connection 
+		
+			-> Host Name 
+			-> User Name 
+			-> User Authentication 
+
+
+			-> Authentication Types :
+			
+				- Password Based Authentication
+				
+				- Key Based Authentication
+					- Public Key 
+					- Private Key 
+					- authorized keys
+
+
+
+
+		How to Create Linux User ?
+		
+			Username : devopsadmin 
+			
+			Bash Terminal Access :
+			
+			Home Dir :
+			
+			password :
+			
+			ssh-keys :
+
+
+
+		Create Linux User with SSH Keys :::
+		
+			sudo -i 
+			
+			useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+			su - devopsadmin
+
+
+		Create Password to any Linux User:
+		
+			As a root user ::
+			
+				passwd <user_name>
+				
+				passwd devopsadmin
+
+
+		Get the List of Linux Users ::::
+			cat /etc/passwd
+		
+		Get the list of Linux User Groups :::: 
+			cat /etc/group
