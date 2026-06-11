@@ -556,3 +556,257 @@ drwxrwxr-x  2 ubuntu ubuntu 4096 Jun  8 15:20 file2.java/
 		
 		Get the list of Linux User Groups :::: 
 			cat /etc/group
+
+
+
+
+######################
+Day 6 - 9th June 2026
+######################	
+
+	User & Access Management :
+
+		Create Linux User with SSH Keys :::
+		
+			sudo -i 
+			
+			useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+			su - devopsadmin
+
+		Create Password to any Linux User:
+		
+			As a root user ::
+			
+				passwd <user_name>
+				
+				passwd devopsadmin
+				
+		Create Secure SSH Keys :
+		
+
+			ssh-keygen -t ecdsa -b 521					#ubuntu 22.04 or higher version of ubuntu				
+
+			cd .ssh
+			
+			ls ~/.ssh 
+
+			#You should see following two files:
+
+			#id_ecdsa - private key
+			#id_ecdsa.pub - public
+			
+			
+			cat id_ecdsa.pub > authorized_keys			# authorized_keys this file name should be same.
+			
+			
+			chmod 600 /home/devopsadmin/.ssh/*
+			
+			authorized_keys :::
+				It is the copy of Public Key.
+				
+				Always the private key will be compared with the authorized_keys
+				
+
+
+
+
+
+
+		Get the List of Linux Users ::::
+			cat /etc/passwd
+		
+		Get the list of Linux User Groups :::: 
+			cat /etc/group
+
+
+	
+		Add user to a Group :
+		
+			usermod -aG <Existing_Group_Name> <Existing_User_Name>
+			
+			usermod -aG docker devopsadmin
+
+
+		Change the Ownership of any dir/file :::		
+			
+			chown -R devopsadmin /opt/tomcat/		# Used to Change the Ownership of Files or Directories
+			
+			
+		Change the Ownership of any dir/file :::		
+			
+			chown -R devopsadmin /opt/web_app_dir1/		# Used to Change the Ownership of Files or Directories	
+			
+			chown -R devopsadmin:devopsadmin /opt/web_app_dir1/		# Used to Change the Ownership of Files or Directories	
+
+
+			Tomcat Service: --> Web Application Service 
+			
+			chown -R devopsadmin /opt/tomcat/		# Used to Change the Ownership of Files or Directories
+			chown -R devopsadmin:devopsadmin /opt/tomcat/		# Used to Change the Ownership of Files or Directories			
+			
+
+	
+	Remote Server Access :::
+	
+		- Jenkins/Ansible/Terraform/Kubernetes/Prometheus/Docker 
+		- Build Server 
+		- Target Server 
+	
+		
+		Client Server Architecture :::
+		
+			- Server ==> Client 1,2,3,4,5
+			
+	Environments:
+	
+		Non-Prod 												Prod Environments
+		
+		
+			Dev 
+			
+			Build  --> *.war/*.exec
+			
+			Test 	--> *.war/*.exec
+			
+				QA 
+				
+				UAT 		==========================>				Prod Servers1,2,3,4,5,6
+	
+
+
+Use Case :
+
+		1. Establish Connection to Remote Server  
+		2. Login to the Remote Server 
+		3. Copy the Files from one server to another server
+			using SCP
+		4. Manage the Remote Server - Install any package/Uninstall/Upgrade 
+
+
+		Pre-requisites for Remote Server :::
+		
+			- Launch 2 VMs (VM1-Source & VM2-Target)
+			
+			- Ensure that Port 22 is enabled 
+			
+			- Create User in both the VMs 
+			
+			- Create SSH-Key in one server(VM1)
+					ssh-keygen -t ecdsa -b 521
+					
+			- Use the public_Key as a authorized_keys in the target server(VM2)
+			
+			- Establish SSH Connection & Login to VM2(Target_Machine)
+			
+			- Copy Files from VM1 to VM2(Target_Machine)	
+			
+			
+			
+		1. Share the public_key to the target machine as a authorized_keys (Ansible Module)
+	
+		2. Share the private_key to the target machine (Jenkins Module)
+	
+	
+	
+		Server1 --> 
+		
+			-> Authentication : Tells who can access the Server 	
+			
+			-> Authorization : Tells what can be done on that Server
+
+
+Source Machine :::
+
+		Create Linux User with SSH Keys :::
+		
+			sudo -i 
+			
+			useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+			su - devopsadmin
+
+			ssh-keygen -t ecdsa -b 521					
+			
+			cd .ssh
+			
+			ls ~/.ssh 
+
+			#You should see following two files:
+
+			#id_ecdsa - private key
+			#id_ecdsa.pub - public
+			
+
+			
+Client_Machine ::::
+
+		- Create User :::
+			
+				useradd adminuser1 -s /bin/bash -m -d /home/adminuser1
+
+				su - adminuser1					
+
+			- Use the public_Key as a authorized_keys in the target server(VM2) :::
+
+				mkdir .ssh 
+
+				cd .ssh 
+
+
+				vi authorized_keys
+
+				#paste the id_ecdsa.pub of devopsadmin user from Server machine to authorized_keys file in Client Machine 
+
+				chmod 600 /home/adminuser1/.ssh/*
+
+
+		- Establish SSH Connection & Login to VM2(Target_Machine)
+
+				ssh adminuser1@172.31.8.222		# Using Private IP Address
+							
+		- Copy Files from VM1 to VM2(Target_Machine)
+		
+
+			#cp  /home/devopsadmin/sourcefile.txt home/devopsadmin/dir1/
+	
+			 scp /home/devopsadmin/sourcefile.txt adminuser1@172.31.8.222:/home/adminuser1
+	
+	
+	
+
+
+
+
+	
+	Fundamentals of Shell Scripting :
+	
+		- Enable Process Automation ::
+		
+			-> Shell Scripting 
+	
+					Administrate
+					
+					Automate 
+					
+					
+	Development 		-> Linux Server --> Create 50 User IDs 
+	
+	IT Support Team 	->  5000+ Servers 
+	
+		- Regular Server patch updates / Security Updates / User Management / Files Management / Storage Management / Process Management 
+		
+		Non-Prod								Production Environments
+		
+			dev_servers									Production Servers (LIVE)
+			build_server 										(Web Service)
+			test_servers 
+			
+			
+		Script1 --> Start - 8AM server1
+		
+		Script2 --> Stop  - 10PM
+		
+Next :::
+		
+	- 	Fundamentals of Shell Scripting :
