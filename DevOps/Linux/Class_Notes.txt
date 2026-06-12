@@ -810,3 +810,746 @@ Client_Machine ::::
 Next :::
 		
 	- 	Fundamentals of Shell Scripting :
+
+######################
+Day 7 - 11th June 2026
+######################	
+	
+	- 	Fundamentals of Shell Scripting :	
+	
+	DevOps Perspective :
+	
+		- Shell/Groovy/YAML/Python
+		
+-> Pre-requisites ::::
+
+			Scripting Languages ?
+				- Are used to perform some process automation/validations
+				- Light-weight 
+				- Eg.: java scripts / shell scripts / yaml script / groovy / python 
+					(vs)
+			Progamming Language ?
+				- Are used to create some business applications 
+				- Huge Collection of Programming components
+				- Eg.: Java/.Net Framework/Python/Ruby/Cobol/C
+				
+			
+			Shell Scripting Language :
+			
+				- Shell Scripting is a collection shell commands 
+				- Shell Script file should be saved as *.sh (Extention should be .sh)
+	
+	
+Why to use Programming/Scripting Languages :::	
+	
+	
+	Based on Data :
+	
+	Fundamentals :
+	
+	What is Data ?
+	
+		- It is just a raw text/fact. Without any meaning!	
+		
+			- INDIA --> raw text/fact. Without any meaning!
+		
+	What is Information ?
+		
+		- It is the processed data. 
+	
+			- INDIA is a Country - Information 
+	
+	Programming/Scripting Langauages:
+	
+	C Programming :::
+	
+	- Handling Variable :
+	
+	- Indentifier: 
+	
+	-Variable:
+	
+		i = 5 --> Numberic/String/Float,...........
+
+		
+	- Data Types: define the type and size of the data 
+	
+		int/float 
+		
+		
+	int stud_ID = 10001
+	
+	float pgk = 100.0
+	
+	String stud_Name = "Tom"
+	
+	
+	- Store beyond the scope the program 
+	
+	int stud_id[] = {1,2,3,4,5}			# Array Variable 
+	
+		- Arrays are the group of values with same name and data type.
+		- Each element in the array are identified using index value 
+		- Index start with 0
+		
+		stud_ID[1] => 2 
+		
+		stud_ID[0] => 1
+		
+	
+	Files --> Handle the files - json file/ yaml file / flat seq file.  - Sequential
+	
+	customer details --> 
+	
+	
+	10000 - records 
+	
+	Databases --> indexed Sequential
+	
+		- Relational Data 
+		
+		
+	Tables :
+
+		Rows&columns 
+	
+	Stud_Details Table: 
+	
+	Sno 	SName 		Course_Name			Mobile_Number			Email_ID 
+	1001	xxxxx		wwww				242342342				asdfasd@asdf.com
+	1002	xxxxx		wwww				142342342				asdfasd1@asdf.com
+	1003	xxxxx		wwww				342342342				asdfasd2@asdf.com
+	1004	xxxxx		wwww				442342342				asdfasd4@asdf.com
+
+
+	--> Web Application API can able to process the data 
+	
+	Handle the API 
+	
+		API Responses will be in the form of Json/Yaml Files. ***** 
+	
+	Iterations: 
+	
+		Loops 
+		
+		--> for / while / do-while 
+	
+
+==>
+
+	Linux Scripts Examples :::
+	
+	
+	Shell Scripts to Implement DevOps Process Automation/Solutions :::
+	
+		- Automate the Infra-Structure Configurations
+		
+		- Automate the Application Deployments 
+		
+		- Automate the Remote Server Management :
+					- Security Patches 
+					- Upgrade
+
+		- Automate the Application Data Back-up & Restore 
+		
+
+	How to create shell scripts ????
+	
+		script file :
+		
+			*.sh 
+			
+		*.sh should have execute access 
+		
+		chmod 755 *.sh		
+		
+		./script1.sh						# Execute shell script!
+		
+		Eg.: 
+		
+		vi sample_script1.sh
+			
+			#!/bin/bash
+			#
+			echo "Hello World"
+			echo "Hello Everyone"
+			
+		chmod 755 sample_script1.sh
+		
+		./sample_script1.sh						# Execute shell script!
+
+		
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to print Hello World on terminal using echo command
+
+Source Code:
+
+#!/bin/bash
+#
+echo "Hello World"
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to print the calender month by default.
+
+
+# apt install ncal -y
+
+Source Code:
+
+#!/bin/bash
+#	     
+echo "The Month is"
+cal # cal command displays current month by default
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to read user input and perform operations with them.
+
+Source Code:
+
+#!/bin/bash
+echo -n "Enter number 1 : " # -n option supresses newline
+read NUM1 # Read the user input from Standard Input and store in Variable NUM1
+
+echo -n "Enter number 2 : "
+read NUM2
+
+SUM=$(($NUM1 + $NUM2)) # Arithmetic expansion using double parentheses
+echo "The sum is $SUM"
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show usage of if condition
+
+#Operators :: 6 Operators--> =,<,>,<=,>=!=  
+
+Source Code:
+
+
+#!/bin/bash
+
+NUM1=5 # variable assignment
+NUM2=2
+
+if [ $NUM1 -gt $NUM2 ] # -gt is to test integer numbers
+then
+    echo "NUM1 > NUM2"
+fi
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show usage of if else condition
+
+Source Code:
+
+#!/bin/bash
+
+NUM1=2 # Variabe assignment
+NUM2=5
+
+if [ $NUM1 -lt $NUM2 ]  # -lt is to test integer numbers
+then
+    echo "NUM1 < NUM2"
+else
+    echo "NUM1 > NUM2"
+fi
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show usage of else if condition
+
+Source Code:
+
+#!/bin/bash
+#
+echo -n "Enter a number: "
+read NUM										# 200 Scenarios
+
+if [ $NUM -gt 0 ]
+then
+	echo "$NUM is +ve"
+elif [ $NUM -lt 0 ]
+then
+    echo "$NUM is -ve"
+else
+    echo "$NUM is 0"
+fi
+
+echo "done"
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to demonstrate case statement
+
+Source Code:
+
+#!/bin/bash
+
+echo -n "Enter a character: "
+read CHAR							# a,e,i,o,u			==> A,E,I,O,U
+
+case $CHAR in
+	a) echo "You entered $CHAR which is a vowel";;  # ;; Terminates each option
+	e) echo "You entered $CHAR which is a vowel";;
+	i) echo "You entered $CHAR which is a vowel";;
+	o) echo "You entered $CHAR which is a vowel";;
+	u) echo "You entered $CHAR which is a vowel";;
+	*) echo "You entered $CHAR which is not a vowel";; # Defaults to everything else
+esac
+
+
+
+# a = 5 
+
+# b = 0
+
+# c = $a 
+
+
+
+
+
+
+
+echo "What if you enter upper case letters!!?, Check the next example"
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to demonstrate case statement
+
+Source Code:
+
+#!/bin/bash
+
+echo -n "Enter a character: "
+read CHAR
+
+case $CHAR in
+	a | A) # Test for both Lower or Upper case letter
+		# You may write commands in this fashion too!!, means multiline commands
+		echo "You entered $CHAR which is a vowel"
+		;; # Terminates each option
+	e | E) 
+		echo "You entered $CHAR which is a vowel"
+		;;
+	i | I) 
+		echo "You entered $CHAR which is a vowel"
+		;;
+	o | O) 
+		echo "You entered $CHAR which is a vowel"
+		;;
+	u | U) 
+		echo "You entered $CHAR which is a vowel"
+		;;
+	*)  # Defaults to everything else
+		echo "You entered $CHAR which is not a vowel"
+		;;
+esac
+
+
+
+#  > < == != >= <=
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to show usage of logical operators
+
+Source Code:
+
+#!/bin/bash
+
+echo -n "Enter a NUM: "
+read NUM
+
+# Check whether a number is between 10 and 20 (Using AND -a operator)
+if [ $NUM -ge 10 -a $NUM -le 20 ]
+then
+    echo "$NUM is between 10 and 20"
+else
+    echo "$NUM is NOT between 10 and 20"
+fi
+
+echo -n "Enter another NUM: "
+read NUM
+
+# Check whether a number is between 10 and 20 (Using OR -o operator)
+if [ $NUM -lt 10 -o $NUM -gt 20 ]
+then
+    echo "$NUM is NOT between 10 and 20"
+else
+    echo "$NUM is between 10 and 20"
+fi
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to demonstarte for loop [ Bash syntax ]
+
+Source Code:
+
+#!/bin/bash
+#
+
+COUNT=0
+
+for i in 0 1 2 3 4
+do
+    echo "Loop count is ${COUNT}"
+    COUNT=$((COUNT + 1))
+done
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A simple script to demonstarte for loop [ C syntax ]
+
+Source Code:
+
+#!/bin/bash
+
+COUNT=0
+
+for ((i = 0; i < 5; i++))
+do
+    echo "Loop count is ${COUNT}"
+    COUNT=$((COUNT + 1))
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< 	Less than operator 
+<=  Less than or equal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Functions/Methods :
+
+	==> Define once and invoke many times as needed.
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show the usage of command line arguments, Here we access positional arguments using $1, $2 …
+
+Source Code:
+
+vi script1.sh
+
+#!/bin/bash
+
+echo "Total no. of argument: $#"
+
+ 
+
+echo "Program name: $0"
+echo "1st argument: $1"
+echo "2nd argument: $2"
+echo "3rd argument: $3"
+
+
+
+
+
+######################
+Day 8 - 12th June 2026
+######################	
+
+
+
+Functions/Methods :
+
+	==> Define once and invoke many times as needed.
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A script to show the usage of command line arguments, Here we access positional arguments using $1, $2 …
+
+Source Code:
+
+vi script1.sh
+
+#!/bin/bash
+
+echo "Total no. of argument: $#"
+
+ 
+
+echo "Program name: $0"
+echo "1st argument: $1"
+echo "2nd argument: $2"
+echo "3rd argument: $3"
+
+sudo apt install "$4" -y
+
+
+./script1.sh Hello Hai Java 
+
+sudo apt install java -y
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Write a Shell Script to :
+
+
+	- Setup the Build Server - Java Application Build using Maven	
+
+vi java_build_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Build Server - Java Application Build using Maven"
+sudo apt update -y 
+sudo apt install git -y 
+sudo apt install $1 -y				# sudo apt install jdk17 -y 
+sudo apt install $2 -y				# sudo apt install maven -y 
+
+./java_build_Setup.sh jdk17 maven
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+	
+	- Setup the Test Server - Test Java Web Application using Selenium
+	
+#!/bin/bash
+#
+
+pkg1 = "jdk17"
+
+echo "Setup the Test Server - Test Java Web Application using Selenium"
+sudo apt update -y  
+sudo apt install "$pkg1" -y
+sudo apt install $2 -y	
+
+./java_Test_Setup jdk17 selenium
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	- Setup the Build Server - Java Application Build using Maven and Docker	
+	
+vi java_dockerbuild_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Build Server - Java Application Build using Maven"
+sudo apt update -y 
+sudo apt install git -y 
+sudo apt install $1 -y
+sudo apt install $2 -y
+sudo apt install $3 -y
+
+./java_build_Setup jdk11 maven docker.io
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	- Setup the Application Web_Server and Deploy Java Application Artifacts 
+	
+vi java_WebAppServer_Setup.sh
+
+#!/bin/bash
+#
+echo "Setup the Application Web_Server and Deploy Java Application Artifacts"
+sudo apt update -y 
+sudo apt install $1 -y
+sudo apt install $2 -y
+
+./ava_WebAppServer_Setup.sh jdk11 tomcat	
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A script to show the usage of function
+
+Source Code:
+
+
+print_hello
+
+#!/bin/bash
+
+# Multi-line Comment!
+:'
+dfsd
+fs
+dfsddf
+s
+':
+
+
+# Function definition
+function print_hello()
+{
+    	echo "====="
+    	echo "Hello"
+    	echo "====="
+}
+
+# Call the function - print_hello
+print_hello
+
+print_hello
+print_hello
+print_hello
+print_hello
+
+#print_hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Package Installation ::
+
+
+	- apt / yum 
+	
+	Manual Installation of packages in zip file format!
+	
+	1. *.exec ==> run using Windows Installer 
+	
+	2. Binaries ==> Setup Environment Variable 
+
+
+	
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#Install Tomcat ::  https://tomcat.apache.org/download-80.cgi
+
+#https://tomcat.apache.org/
+
+
+# Pre-Requisites ::::
+
+sudo -i
+sudo apt update -y
+sudo apt install default-jdk -y
+java --version
+
+# Tomcat Installation & Setup :::
+
+
+cd /opt/
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+tar -xvzf /opt/apache-tomcat-8.5.99.tar.gz
+mv apache-tomcat-8.5.99 tomcat
+
+cd tomcat/bin/
+./startup.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A script to demostrate usage of sed command
+
+Source Code:
+
+#!/bin/bash
+
+# Basic text substitution using sed
+echo "Bash Scripting Bash Language" | sed 's/Bash/Perl/'
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+vi /etc/profile 
+
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+
+export MAVEN_HOME="/usr/share/maven"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin:$MAVEN_HOME/bin	
