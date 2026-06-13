@@ -773,10 +773,6 @@ Client_Machine ::::
 			 scp /home/devopsadmin/sourcefile.txt adminuser1@172.31.8.222:/home/adminuser1
 	
 	
-	
-
-
-
 
 	
 	Fundamentals of Shell Scripting :
@@ -1019,13 +1015,6 @@ echo "The sum is $SUM"
 
 
 
-
-
-
-
-
-
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A script to show usage of if condition
 
@@ -1083,10 +1072,6 @@ fi
 
 echo "done"
 
-
-
-
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A script to demonstrate case statement
 
@@ -1113,11 +1098,6 @@ esac
 # b = 0
 
 # c = $a 
-
-
-
-
-
 
 
 echo "What if you enter upper case letters!!?, Check the next example"
@@ -1222,40 +1202,8 @@ done
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 < 	Less than operator 
 <=  Less than or equal
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1379,20 +1327,7 @@ sudo apt install $3 -y
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	- Setup the Application Web_Server and Deploy Java Application Artifacts 
 	
@@ -1446,24 +1381,6 @@ print_hello
 #print_hello
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Package Installation ::
 
 
@@ -1474,17 +1391,6 @@ Package Installation ::
 	1. *.exec ==> run using Windows Installer 
 	
 	2. Binaries ==> Setup Environment Variable 
-
-
-	
-
-
-
-
-
-
-
-
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1513,18 +1419,6 @@ cd tomcat/bin/
 ./startup.sh
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 A script to demostrate usage of sed command
 
 Source Code:
@@ -1534,16 +1428,6 @@ Source Code:
 # Basic text substitution using sed
 echo "Bash Scripting Bash Language" | sed 's/Bash/Perl/'
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 vi /etc/profile 
 
