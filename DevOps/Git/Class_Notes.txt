@@ -1,0 +1,303 @@
+######################
+Day 9 - 12th June 2026
+######################	
+
+	Version Control System usng GIT ::::
+	
+	Continuous Development ::::
+	
+		- Developers 
+
+	- Created the Source Code  - Java/.Net/Python
+	- Save the Source Code in the Source Code Repositories(GitHub)	
+	
+	
+	What is Version Control System?
+	
+		- Used to Version Control the Source Code Changes 
+		- Used to track the Source Code Changes 
+		
+		
+		
+	Developer1 :
+	
+		d:/Workspace 
+		
+		index.html 
+		
+		<html>
+		----
+		---
+		-
+		-
+		-
+		-
+		-
+		-
+		</html>
+		
+		save index.html 			Test index.html 
+		
+		index.html 
+		
+		<html>
+		----
+		---
+		-aadf
+		----
+		---
+		--
+		--
+		--
+		----
+		</html>		
+		
+		save index.html 			Test index.html 
+		
+		
+		Using VCS:
+		
+		d:/Workspace 
+		
+		index.html 
+		
+		<html>
+		----
+		---
+		-
+		-
+		-
+		-
+		-
+		-
+		</html>
+			
+		save index.html using VCS			index.html_v1.0	--> v1.0 ==> Version_Number/Tag/Commit_ID
+		
+		
+		index.html 
+		
+		<html>
+		----
+		---asdfasdf
+		-asdfad
+		-adfasdf
+		-
+		-asdfasdf
+		-
+		-
+		</html>
+		
+		save index.html using VCS			index.html_v1.1
+		save index.html using VCS			index.html_v1.2
+		save index.html using VCS			index.html_v1.3
+		save index.html using VCS			index.html_v1.4
+		save index.html using VCS			index.html_v1.5
+		
+	
+	VCS Types:
+		
+		- Local VCS 
+		- Centralized VCS 
+		- Distributed VCS 
+		
+		
+	GIT :
+	
+		- Git is an Open-Source Distributed Version Control System
+		- Used to Version Control the Source Code Changes 
+		- Used to track the Source Code Changes
+		- Used to perform parallel development using Branching Technique
+		
+		
+		- Git		==> To Manage the Local Repositories(Folders/Files)
+		
+		- GitHub 	==> To Manage the Remote Repositories(Folders/Files)
+		
+	Install and Configure Git Client on Local Machine.		# https://git-scm.com/install/
+	
+		- Windows users: Git for Windows/x64 Setup.
+			- git bash		# default linux user command
+			- git cmd
+			- git gui
+		- Mac users :
+			- Open Mac Terminal 
+			
+			
+		- git --version 
+			
+######################
+Day 10 - 15th June 2026
+######################	
+
+			
+	Git File Workflow :::
+	
+	Distributed VCS:
+	
+		Remote Repository Server 	: github/gitlab/bitbucket/Azure-Repo
+	
+		Local Machine 				: Git Client
+	
+	Git Misc. Command
+	Git Branching Strategies/Techniques
+	Git Remote Repositories Management
+	
+	
+	Local Machine:																		Remote Server :
+	
+	Git_Client 																				GitHub UI
+
+		Working Directory		Index/Staging Area 				Local Repository			Remote Repository
+		
+			index.html ---------> index.html 		------------> index.html_v1.1 ------------> index.html_v1.1
+						 git add 				  	  git commit					git push
+			index.html ---------> index.html 		------------> index.html_v1.2 ------------> index.html_v1.2
+						 git add 				  	  git commit					git push
+			index.html ---------> index.html 		------------> index.html_v1.3 ------------> index.html_v1.3
+						 git add 				  	  git commit					git push
+						 
+	
+	
+	Developer:
+	
+		- Enhancement_Project / Bug Fixing 
+		
+		- New Project 
+	
+	
+	
+	GIT Cli Commands :
+	
+	
+	- git clone			# To Copy/Clone the entire Remote Repository to the Local Machine
+
+	- git add 			# To Add the Changes from working directory to the Staging Area 
+	
+	- git commit 		# To Commit the Changes from the Staging Area to Local Repository
+	
+	- git push 			# To push the changes to from Local Repository to Remote Repository
+	
+	- git pull/fetch	# Both git pull/fetch are used to handle the incremental changes from Remote Repository
+	
+	
+		git fetch:		
+				# Used to just check for the  incremental changes from remote repository, if any incremental changes exist, it will update the details in the Local Repository. Git Fetch will never update the working directory.
+				
+				Perform explicit merge to working directory using branching techniques.
+				
+				
+		git pull:
+				# Used to check for the  incremental changes from remote repository, if any incremental changes exist, it will update the Local Repository as well the working directory.
+				
+				
+				git pull ==> git fetch + git merge
+				
+				# As a best practise, it is always recommended to use git pull to keep the local repository in-sync with remote repository
+				
+	
+	- Fork : 
+				# To copy one remote repository to another remote repository
+				
+	
+	
+	- git init:
+				# To initialize a local repository
+				# It create .git/ Directory 
+				# It creates the master/main branch
+				
+				
+	
+	Demo : Git Cli Commands: 
+
+
+		Local Machine/Repository
+			
+	Local Machine:																
+	
+	Git_Client 																	
+
+		Working Directory		Index/Staging Area 				Local Repository
+		
+			file1.txt ---------> 	file1.txt 		------------>	 file1.txt 
+						 git add 				  	  git commit
+						 
+						 
+						 
+	Workspace Directory:
+	
+		Project_Folder:
+		
+			Create Project Repo1,2,3,4,5
+			
+			
+			
+		cd d:
+		mkdir pl-devops-1506
+		cd pl-devops-1506
+		mkdir repo1
+		mkdir repo2
+		mdkir repo3
+		cd repo1 
+			
+			
+	- git init 	
+	
+	- git status 		# To get the status of current branch of the repository
+	
+	- git log 			# To get the list of commit 
+	
+	- ls 				# Linux command to get the list of files/directories from working directory
+	
+	- git ls-files		# To get the list of files that being tracked by git.
+	
+	- Git Config :::
+	
+	
+		- git global configuration:   	# Used to set the user_name / User_email_id
+										# Global Config is applicable to all the repositories
+			
+				
+			git config --global user.name "Loksai"
+			
+			git config --global user.email "Loksai@asdf.com"
+		
+		- git local configuration:   	# Used to set the user_name / User_email_id
+										# Local Config is applicable to a specific repository
+				
+				
+			git config user.name "Loksai"
+			
+			git config user.email "Loksai@asdf.com"
+			
+			
+	Flow of Execution:
+	
+		- Install git client 
+		
+		- Open git terminal
+		
+			cd d:
+			mkdir pl-devops-1506
+			cd pl-devops-1506
+			mkdir repo1
+			cd repo1
+			
+		- git init 
+		
+		- git config --global user.name "Loksai"						# One time activity on local machine 
+		
+		- git config --global user.email "Loksai@asdf.com"				# One time activity on local machine
+		
+		- echo "rec1" >> file1.txt 
+		
+		- git add file1.txt 
+		
+		- git commit -m "Created file1.txt" 
+		
+	
+Next :
+
+	Misc Commands 
+
+		
