@@ -1,0 +1,362 @@
+
+#########################
+Day 14 - 22nd June 2026
+#########################
+
+
+	- Continuous Development, CI, CD :::
+	
+	
+	Jenkins : Build Orchestration Tool:
+	
+	Web Applications using Java:
+	
+	
+	- Build :::
+		- Process to compile and create the artifacts(Binaries - *.war/*.jar/*.exec/*.dll
+		
+		
+	Build Tools : ant / maven / gradle 
+	
+	
+	Maven Build Tool :
+	
+	Coding Standards based on the Progamming Langauages:
+	
+		Project Workspace Directory:
+		
+		Java_Web_Application_Project ::: -> Root Folder (Maven)
+			- src 
+				- main
+					*.java 
+					*.java 
+					*.java 
+				- test 
+					*.java 
+					*.java 
+					*.java 
+			- resources 
+				- *.html 
+				- *.js 
+				- *.css		
+			- application.properties 			
+			- db_credentials.json 			
+			- target/
+				*.war 
+				*.war 				
+			- Maven_Libraries 			
+			- pom.xml 
+	
+	
+	Understanding and Using Build Tools
+
+	Overview of Various Build Tools
+	What is Maven
+	Maven Architecture
+	Maven Plugins
+	Maven Archetypes
+	Maven Commands
+	Integration of Jacoco plugin for Code Coverage	
+
+			
+		What is Application Build ?
+		
+				Build --> It is a process of Compiling the source code and create artifacts.
+				
+					Eg.: Java Program ==> High Level Language 
+							Code Compilation 
+							Create Artifacts --> Artifacts are the Binary Code(*.war/*.jar/*.exec)
+		
+
+				
+		Maven Build Tool :::
+		
+			- Is a Java Application Build Tool, used to compile the Java application source code, Perform Unit Testing, Create Artifacts. 
+			
+		
+			Java Program :::
+			
+			javac - java compiler 
+			
+			
+			
+		Environment :
+		
+			Non-Prod Environments 
+			
+				Dev Environment:				
+					- Create Source Code 
+					
+				Build Environment:
+					- Build the Source Code 
+					- Build Tools like Maven 
+					- Unit Testing 
+						
+				Test Environment :
+					QA Testing 
+					UAT Testing 
+					
+					
+	Dev Environment:	
+		
+		Developers' Workflow ::
+
+			1. Create Program : *.java 
+			
+			2. Compile 
+			
+			3. Create artifacts 
+			
+			4. Test the program - Unit Testing using Unit Testing Tool like JUnit
+			
+			5. Push the Changes to Remote github repository 
+			
+			Tools required to perform these activities :::
+			
+			Tools :::
+			
+				- Eclipse based IDEs - like Eclipse for Java,Pycharm,Intellij, Visual Studio, Visual Studio Code
+				- Source Code Management Tool - like github/AWS Code Commit/Azure Repos 
+				- Jdk, Maven, JUnit Testing Tool, git  			
+
+
+
+			
+	Build Environment:
+
+		Using DevOps Approach ::
+		Automate ::
+
+		- Identify/Clone the Source Code from Github Repository 	
+		
+
+			
+			mvn clean package 
+
+		
+		- Build the code - Compile and create artifacts 					
+		- Unit Testing 			
+		- Verify the Unit Test Coverage 
+		- Archive the Artifacts in the Artifactory Library 
+		- Promote the Application to higher testing Environment(QA)					
+		- Notify the Testing/Development Team 	
+		
+		
+	
+	Version Control System :
+	
+		
+		Source Code 		*.java_v1.1  	---> GitHub 
+		Source Code 		*.java_v1.2  	---> GitHub 
+		Source Code 		*.java_v1.3  	---> GitHub 
+		Source Code 		*.java_v1.4  	---> GitHub 
+		
+		Artifacts			*.war_v1.1 		---> Artifactory Library(Jfrog/Az_Artifacts) --> Prod 
+		Artifacts			*.war_v1.2 		---> Artifactory Library(Jfrog/Az_Artifacts) --> Prod 
+		Artifacts			*.war_v1.3 		---> Artifactory Library(Jfrog/Az_Artifacts) --> Prod 
+		Artifacts			*.war_v1.4 		---> Artifactory Library(Jfrog/Az_Artifacts) --> Prod 		
+		
+		How to Perform Application Build, Unit Testing ?
+		
+			- Using Maven Build Tool 
+				- Maven is Java Application Build Tool
+				- Maven is used to Compile the Source Code 
+				- Create Artifacts 
+				- Perform Unit Testing
+					(Unit Testing is a process of testing the changes done by the developers)
+				- Maven can verify the Code Coverage 
+				
+		Application Build Process :
+		
+			Input 	: Source Code 	-	*.java  (github repositories)
+			
+			Output 	: Artifacts 	- 	*.war 	(Artifactory Libraries)
+			
+		Maven - Build Tool
+		
+		How Maven Works ??
+		
+		Application Source Code Repository :
+		
+			Developer create POM.XML File to perform Maven Build
+								
+		Build Tools - Maven - used to build Java applications 
+		
+		Using Maven : 
+			Application Build - Compile the code, create artifacts, perform unit-testing 
+
+				- Build  - It is a process of compiling the source code and create artifacts(Binaries - *.war / *.jar/ *.exec) 
+				- Unit Testing
+	
+	
+		Maven Project :
+		
+			pom.xml - Project Object Model :
+			
+				- Will be part of the Java Application Project - Source Code Repository
+				- It is used to define the properties of application artifacts 
+				- It is used to define dependencies and the plugins required to perform build/unit-testing
+				
+				
+			Maven Repository :		https://mvnrepository.com/
+			
+				- Maven Repositories Contains the Maven Dependencies and Plugins 
+				- During Build, Maven refer to this Repositories and Download the Dependencies to perform Application Build, Unit Testing etc...
+				
+				Eg.: 
+				Build Environment (VM) :::
+
+					Build the application	--> Jdk, Maven 
+					
+					Unit Testing - Junit Testing Tool 
+
+
+
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.35.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+<dependency>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.13</version>
+</dependency>
+
+
+
+
+
+
+
+
+
+	How Maven Works ???
+	
+		- pom.xml file 
+		
+		
+		- maven goals 
+		
+
+
+		Maven Project :
+		
+			pom.xml - Project Object Model :
+			
+				- Will be part of the Java Application Project - Source Code Repository
+				- It is used to define the properties of application artifacts 
+				- It is used to define dependencies and the plugins required to perform build/unit-testing
+				
+				
+			Maven Repository :		https://mvnrepository.com/
+			
+				- Maven Repositories Contains the Maven Dependencies and Plugins 
+				- During Build, Maven refer to this Repositories and Download the Dependencies to perform Application Build, Unit Testing etc...
+				
+				Eg.: 
+				Build Environment (VM) :::
+
+					Build the application	--> Jdk, Maven 
+					
+					Unit Testing - Junit Testing Tool 
+	
+	
+	Non-Prod :
+	
+	
+		- Development Environment
+			- Own by the developers 
+				- IDE, 						# Program - 5 functions
+				- Unit Testing 				# 40 Test Cases 
+					- maven,springboot web-app framework,plugins,jacoco,junit 
+					
+				- Push the Code to  Repository
+		
+		- Build Environment					# Owned by DevOps Team 		
+				
+				Using DevOps Pipeline 
+				- Pull the code 	-- pom.xml 
+				
+				- build 
+				- unit test 
+				- verify the code coverage - 100% 
+		
+		- Test Environment 
+				- QA 
+				
+				- UAT 
+		
+	- PROD :
+		
+		
+		Maven Build Tool :
+		
+			- pom.xml
+
+
+
+		Maven Goals : 
+		
+			This defines the actions we perform using Maven 
+		
+			● mvn compile 	- to compile the source code
+			● mvn test 		- to compile and execute junit test cases
+			● mvn package 	- to compile, test and create artifacts in the target folder of Project Library
+			● mvn clean 	- to clean the target folder.
+
+			Eg.: 
+			
+			mvn clean package 		
+	
+	
+		Java Web Application Project : - 
+
+		My_Web_App - Folder 
+		
+		Maven Project Structure :::			# Java Maven Desktop/Console/terminal Application;
+
+		MVN_Project1				# Project Name 
+			src 
+				main				# Maintain the source code *.java - Business Logic 
+					*.java
+				test				# Maintain the Test Cases and Test Data - JUnit 
+					*.java
+			target
+				artifacts *.war / *.jar
+				
+			pom.xml 			==> defines the application artifacts, plugins and all the required depedencies
+
+			JRE_Libraries
+			MVN_Libraries	
+			
+		
+	Java Code Coverage - JaCoCo :::
+
+	<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+	<dependency>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.12</version>
+	</dependency>		
+		
+		
+
+Java Application Project ::::
+
+	- Java Maven Web Application Project - Created using Spring boot application framework
+
+
+	- https://github.com/PL-DevOps-Cloud-2705/java-webapp-project
