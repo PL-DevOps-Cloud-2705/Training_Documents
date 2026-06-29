@@ -165,3 +165,78 @@ Next :::
 	- Periodic Backup & Recovery
 	- Periodic Upgrade of Jenkins Services and Plugins 
 	- Troubleshoot any Jenkins related Issues
+
+
+
+
+#########################
+Day 16 - 26th June 2026
+#########################
+
+	- Plugins Management :::
+	
+		- Install/Uninstall/Upgrade/Downgrade/Enable/Disable the plugins
+	
+	
+		Jenkins_Master (VM)	--> jdk, jenkins, plugins(maven)		
+				==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+																
+			Jenkins_SlaveNode1 (VM)	==> Perform Application Builds - Java Applications -->  jdk17, mvn3.5
+			Jenkins_SlaveNode2 (VM)	==> Perform Application Builds - Java Applications -->  jdk21, mvn3.5.7			
+			
+			
+	- User Management :::
+	
+		- Used to define the Users' Authentication	
+		- Create/Update/Remove Users 
+	
+	- Security Management :::
+
+		- Used to define the Users' Authorization
+		- Allow/Deny Access
+	
+	- Credentials Management  :::
+	
+		- To maintain the credentials.
+	
+		
+	
+	- Create Jenkins Job/Project in Jenkins Master :
+	
+	
+		- Jenkins Project/Jobs:
+		
+			- Free Style Project 	-- Based on manual configurations using GUI Console 
+			
+			
+		- Variables :
+
+			- Environment Variables :
+			
+				- Reserved Jenkins Keywords  - gets updated at every job execution
+				
+				- echo "jenkins-${JOB_NAME}-${BUILD_NUMBER}"
+				
+						var1 ==> 'xyz'
+						echo "${var1}"
+					
+					Envi = 'QA' 
+				
+				
+			- User defined Variables :::
+			
+Next:::
+					
+	- Pipeline Project 		-- Based on the Scripts - groovy Scripts		
+							-- To Create CICD Pipelines and Onboard applications
+	- Create the Jenkins Master & Slave Node Configurations
+	- Create CICD Pipeline Projects to automate the Applications build  and deployments
+	- Onboard Applications to DevOps Practice
+	- Periodic Backup & Recovery
+	- Periodic Upgrade of Jenkins Services and Plugins 
+	- Troubleshoot any Jenkins related Issues									
+									
+
+
+
+
