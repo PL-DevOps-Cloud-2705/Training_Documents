@@ -1,0 +1,169 @@
+	
+#########################
+Day 20 - 3rd July 2026
+#########################		
+	
+	Containerization using Docker :::
+
+	What is Containerization?
+	
+		- It is a process of packaging the Application along with its' dependencies.
+	
+	- DevOps - Micro-Service Based Application Architecture
+	
+
+	- Virtual Machines :::
+	
+		- VMs are called as the Hardware Level Virtualization.
+		- VMs are created using Hypervisor 
+		- VMs are used to execute the Operating System.
+		- VMs will continue to execute even if there is no Active Application/Task
+		- VMs consume more space and time to start the Application/Task
+
+	- Containers :::
+	
+		- Containers are called as the OS Level Virtualization.
+		- Containers are created using Container Engine 
+		- Containers are used to execute the Application/Task, NOT Operating System.
+		- Containers will immediately goes to EXIT State if there is no Active Application/Task
+		- Containers consume less space and time to start the Application/Task
+		
+		- Using Containers we can reduce the Number of VMs. But we cannot completely eliminate VMs.
+		
+		
+		
+		- Namespace & Control Groups :::
+		
+			- Are the two important properties of kernel.
+			
+			- Using these properties, Containers can be executed in the completely isolated & dedicated address space.
+			
+		- Using Docker Engine, Docker Containers are created and executed.
+		
+		
+	Terminologies :::
+	
+		- Containerization 		#	It is a process of packaging the applications along with its dependencies.
+		
+		- Container-Engine		# 	It is used to Create and Manage the Containers and Container Images.
+		
+		- Container Images 		# 	It is a static file, defines the properties and depedencies of the Application/Container.
+									It is Non-Executable
+									It composed of various layer of Instructions created using Dockerfile.
+									
+		- Containers 			# 	Executable entity of the Container-Image
+
+		- Container Registry	# 	It is used to Store and Manage the versions of Container-Images 
+									Eg.: DockerHub 
+									https://hub.docker.com/
+									
+		- Container Repository	#	It is a subset of Container Registry
+		
+
+		CI :
+		
+		GitHub Repo.								Artifactory Libraries				DockerHub
+													(Jfrog)
+													
+			Source_Code:							Application Artifact				Application Image
+			
+			web_app.java_v1.0		--> Build --> 	web_app.war_v1.0			-->		web_app_Image:v1.0
+		
+			web_app.java_v1.1		--> Build --> 	web_app.war_v1.1			-->		web_app_Image:v1.1		
+				
+	
+	Working with Containers :::
+	
+	
+	
+	- Infra-Structure Perspective :::
+
+		- Using Containers we can reduce the Number of VMs. But we cannot completely eliminate VMs.
+		
+		Jenkins_Master (VM)			
+				==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+																
+			Jenkins_SlaveNode1 (VM)	==> Perform Application Builds - Java Applications 
+			Jenkins_SlaveNode2 (VM)	==> Perform Application Builds - .Net Applications			
+			Jenkins_SlaveNode3 (VM)	==> Perform Application Builds - Python Applications 
+			Jenkins_SlaveNode4 (VM)	==> Perform Application Builds - Angular/NodeJS
+			Jenkins_SlaveNode5 (VM)	==> Perform Application Builds - Ruby 
+			
+		- Using Containers:
+
+		
+		Jenkins_Master (VM)			
+				==> To Create Jenkins CI/CD Pipeline Projects and schedule to the builds in the slave_nodes
+																
+			Jenkins_SlaveNode1 (VM)	==> Perform Application Builds
+				==> Install Contianer Engine, create Containers.
+				
+					C1 ==> Perform Application Builds - Java Applications 
+					C2 ==> Perform Application Builds - .Net Applications		
+					C3 ==> Perform Application Builds - Python Applications 
+					C4 ==> Perform Application Builds - Angular/NodeJS
+					C5 ==> Perform Application Builds - Ruby 
+	
+	
+	- Developers/Deployment Perspective :::		
+	
+		- Developers :
+		
+			Dev/Build: 
+			
+				- Create Source Code 
+				
+				- Application Build 
+				
+				- Deploy the Application Artifacts to Target Server 
+						
+							- web_app.war_v1.0 
+							
+							- dependencies jdk17,Tomcat8.5	
+							
+				- Containerization 		#	It is a process of packaging the applications along with its dependencies.
+
+					- Create the Application Package/Image =>  web_app_Img:v1.0 = (web_app.war_v1.0,jdk17,Tomcat8.5) 
+					
+					- Publish the Application Package/Image =>  web_app_Img:v1.0 to the Container Registry(DockerHub)
+			
+			
+			QA :	- Install Container_Engine
+			
+					- Download Application Package/Image =>  web_app_Img:v1.0 from the Container Registry(DockerHub)
+			
+					- Create Application Container & Execute.
+					
+			
+			UAT :	- Install Container_Engine
+			
+					- Download Application Package/Image =>  web_app_Img:v1.0 from the Container Registry(DockerHub)
+			
+					- Create Application Container & Execute.
+			
+			
+			PROD :	- Install Container_Engine
+			
+					- Download Application Package/Image =>  web_app_Img:v1.0 from the Container Registry(DockerHub)
+			
+					- Create Application Container & Execute.
+			
+			
+
+	- Working with Containers:		
+		
+		- Create DockerHub Account
+			- Login & Explore DockerHub Dashboard.		
+
+			
+
+
+Next:
+		
+		- Install Docker Container-Engine on a VM(Use Jenkins_SlaveNode1)
+				# https://docs.docker.com/engine/install/ubuntu/
+
+				
+		- sudo -i 
+		
+		- apt install docker.io -y
