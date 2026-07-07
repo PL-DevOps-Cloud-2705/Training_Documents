@@ -167,3 +167,158 @@ Next:
 		- sudo -i 
 		
 		- apt install docker.io -y
+
+	
+
+#########################
+Day 21 - 6th July 2026
+#########################			
+		
+		- Install Docker Container-Engine on a VM(Use Jenkins_SlaveNode1)
+				# https://docs.docker.com/engine/install/ubuntu/
+
+				
+		- sudo -i 
+		
+		- apt install docker.io -y	
+		
+	Docker CLI Commands ::::
+
+		- To interact with Docker Engine to create and manage the Docker Images and Containers.
+		
+		
+		- docker --version 
+	
+		- docker --version 
+		
+		- docker images 				# To get the list of Container Images in the Local Machine 
+		
+		- docker ps 					# To get the list Active/Running Containers in the Local Machine 
+		
+		- docker ps -a 					# To get the list of Active and Inactive Containers in Local Machine
+		
+	Access DockerHub:
+	
+		- docker pull 					# To download an Image from DockerHub Registry
+		
+			Syntax:
+			
+				docker pull <image_name>:<tag/version_number>
+				
+				docker pull <image_name>							# Always download the latest version of the image.
+				
+				docker pull <image_name>:latest						# Download the latest version of the image.
+	
+		- docker run 					# Create and run the Container based on the Container Image.
+	
+	
+				docker run <image_name>
+				
+				
+		- Three Modes of Execution:
+		
+			- Foreground/Attached Mode 		# Default 
+			
+					docker run ubuntu		# Hold the terminal during execution
+					
+					docker run ubuntu sleep 20					
+					
+			- Background/Detached Mode :
+			
+					docker run -d ubuntu sleep 20		
+		
+			- Interactive Mode :	
+			
+					docker run -it ubuntu bash 		# Create and Run the container in an interactive Mode 
+					
+					exit							# Stop the Container 
+					
+		- Start Container :::
+		
+				- docker start <container_id>		# To start a container 
+				
+				Eg.: 				
+					docker start 173233fbe3a3
+		
+		- Login to the running Container :::
+		
+				- docker exec -it <container_id> bash 		# Login to a contianer 
+				
+				- exit 										# Logoff 
+				
+				
+				Eg.: 				
+					docker exec -it 173233fbe3a3 bash
+					
+					exit 
+		
+		
+		- Stop Container :::	
+				
+				- docker stop <container_id>		# To stop a container 
+				
+				Eg.: 				
+					docker stop 173233fbe3a3		
+					
+					
+					
+		- docker rm <container_id>					# Remove a container from local machine 
+
+
+		- docker rmi <image>						# Remove an Image from local machine					
+		
+		
+	- Port Mapping/Binding ::::
+	
+		-> Used to Map the Container port and the host port.
+		-> It used to expose the Container to internet.
+		
+		-p <host_port>:<container_port>
+		
+		Eg.: 	
+		
+			docker run -it -p 8085:8080 tomcat:8.0			# Create 1 Container 
+		
+			docker run -it -p 8086:8080 tomcat:8.0			# Ensure that the Host Port is unique!
+			
+			
+	- docker stats <Container_ID>
+	
+	
+
+	- Container Volumes ::::
+	
+		-> Used to maintain the persistant data.
+		
+		
+		Deploy a Micro-Service : User-Sign_Up
+		
+			- 3-Tier Application Architecture :
+			
+				- Front-End Layer		# User Interface		C1 
+				
+				- Application Layer 	# Business Logic 		C2 
+				
+				- Backed Layer 			# Database 				C3
+		
+		
+		Working with Volumes :
+		
+		
+			docker volume list 					# To get the list of volumes 			
+			
+			docker volume create <vol_name>		# To Create a Docker Volume 	
+
+			Eg.: 
+			
+				docker volume create pl-vol1	
+			
+			docker inspect <docker_volume_id>
+			
+			docker run -it ubuntu bash
+			
+			docker run -it --mount source=pl-vol1,destination=/pl-vol1 ubuntu bash
+			
+Next :::
+
+	Create Docker Images
