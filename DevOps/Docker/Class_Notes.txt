@@ -167,3 +167,432 @@ Next:
 		- sudo -i 
 		
 		- apt install docker.io -y
+
+	
+
+#########################
+Day 21 - 6th July 2026
+#########################			
+		
+		- Install Docker Container-Engine on a VM(Use Jenkins_SlaveNode1)
+				# https://docs.docker.com/engine/install/ubuntu/
+
+				
+		- sudo -i 
+		
+		- apt install docker.io -y	
+		
+	Docker CLI Commands ::::
+
+		- To interact with Docker Engine to create and manage the Docker Images and Containers.
+		
+		
+		- docker --version 
+	
+		- docker --version 
+		
+		- docker images 				# To get the list of Container Images in the Local Machine 
+		
+		- docker ps 					# To get the list Active/Running Containers in the Local Machine 
+		
+		- docker ps -a 					# To get the list of Active and Inactive Containers in Local Machine
+		
+	Access DockerHub:
+	
+		- docker pull 					# To download an Image from DockerHub Registry
+		
+			Syntax:
+			
+				docker pull <image_name>:<tag/version_number>
+				
+				docker pull <image_name>							# Always download the latest version of the image.
+				
+				docker pull <image_name>:latest						# Download the latest version of the image.
+	
+		- docker run 					# Create and run the Container based on the Container Image.
+	
+	
+				docker run <image_name>
+				
+				
+		- Three Modes of Execution:
+		
+			- Foreground/Attached Mode 		# Default 
+			
+					docker run ubuntu		# Hold the terminal during execution
+					
+					docker run ubuntu sleep 20					
+					
+			- Background/Detached Mode :
+			
+					docker run -d ubuntu sleep 20		
+		
+			- Interactive Mode :	
+			
+					docker run -it ubuntu bash 		# Create and Run the container in an interactive Mode 
+					
+					exit							# Stop the Container 
+					
+		- Start Container :::
+		
+				- docker start <container_id>		# To start a container 
+				
+				Eg.: 				
+					docker start 173233fbe3a3
+		
+		- Login to the running Container :::
+		
+				- docker exec -it <container_id> bash 		# Login to a contianer 
+				
+				- exit 										# Logoff 
+				
+				
+				Eg.: 				
+					docker exec -it 173233fbe3a3 bash
+					
+					exit 
+		
+		
+		- Stop Container :::	
+				
+				- docker stop <container_id>		# To stop a container 
+				
+				Eg.: 				
+					docker stop 173233fbe3a3		
+					
+					
+					
+		- docker rm <container_id>					# Remove a container from local machine 
+
+
+		- docker rmi <image>						# Remove an Image from local machine					
+		
+		
+	- Port Mapping/Binding ::::
+	
+		-> Used to Map the Container port and the host port.
+		-> It used to expose the Container to internet.
+		
+		-p <host_port>:<container_port>
+		
+		Eg.: 	
+		
+			docker run -it -p 8085:8080 tomcat:8.0			# Create 1 Container 
+		
+			docker run -it -p 8086:8080 tomcat:8.0			# Ensure that the Host Port is unique!
+			
+			
+	- docker stats <Container_ID>
+	
+	
+
+	- Container Volumes ::::
+	
+		-> Used to maintain the persistant data.
+		
+		
+		Deploy a Micro-Service : User-Sign_Up
+		
+			- 3-Tier Application Architecture :
+			
+				- Front-End Layer		# User Interface		C1 
+				
+				- Application Layer 	# Business Logic 		C2 
+				
+				- Backed Layer 			# Database 				C3
+		
+		
+		Working with Volumes :
+		
+		
+			docker volume list 					# To get the list of volumes 			
+			
+			docker volume create <vol_name>		# To Create a Docker Volume 	
+
+			Eg.: 
+			
+				docker volume create pl-vol1	
+			
+			docker inspect <docker_volume_id>
+			
+			docker run -it ubuntu bash
+			
+			docker run -it --mount source=pl-vol1,destination=/pl-vol1 ubuntu bash
+			
+Next :::
+
+	Create Docker Images
+
+
+
+#########################
+Day 22 - 7th July 2026
+#########################
+
+	- Create the Container Images ::::
+	
+		- Docker Commit :::
+				
+				- It is used to Create a Container Image based on the existing Container reference.
+				- Used by the Infra-Structure Management Team
+			
+			Syntax :::
+			
+				docker commit <Container_ID> <dockerhub_repository_name>/<New_Image_Name>:<tag>
+				
+				
+				Eg.: 
+				
+				docker commit 173233fbe3a3 loksaieta/pl-mvn-build:v1.0
+
+
+	- Publish/Push Container Images to Container Registry ::::
+	
+	
+		- docker login 		# Login to Container Registry using Docker cli.
+		
+			- User Name :
+			
+			- Password(Access Token) :
+			
+			- Create DockerHub Access Token :::
+			
+				- Login to DockerHub using Web Browser 
+					- Goto setting and create one!
+					
+					To use the access token from your Docker CLI client:
+
+					1. Run
+					docker login -u loksaieta
+					
+					
+					2. At the password prompt, enter the personal access token.
+
+					asdfasdfasdfasdfasdfasdf
+	
+		- docker push <dockerhub_repository_name>/<New_Image_Name>:<tag>
+		
+			Eg.: 
+			
+				docker push loksaieta/pl-mvn-build:v1.0
+				
+				docker push loksaieta/pl-mvn-build:v2.0
+		
+		
+		
+				docker pull loksaieta/pl-mvn-build:v1.0	
+
+
+				
+		- Docker Build :::
+	
+				- It is used to Create a Container Image from the scratch based on the Dockerfile Instructions
+				- Used by the Developers to Containerize the Applications
+		
+		
+		- vi Dockerfile 
+		
+			FROM ubuntu 
+			RUN apt update -y
+			RUN apt it -y 
+			RUN apt installinstall g maven -y
+			
+			
+		Syntax: 
+		
+			docker build -t <dockerhub_repository_name>/<New_Image_Name>:<tag> .		# '.' refers to Dockerfile reference.			
+		
+			Eg.: 
+			
+			docker build -t loksaieta/pl-java-mvn-build .
+			
+			
+		Dockerfile Instructions ::::		
+		
+			FROM 									# To Identify the Base Image
+			RUN 									# To run the package manager
+			COPY 									# To Copy the file from host volume to container volume
+			CP 										# To Copy the file within the container volumes 
+			ADD 									# To Copy the file from Host Volume as well as from URL
+			ENV 									# To define the Environment Variable 
+			ARG 									# To pass Arguements to the Steps in Dockerfile 
+			EXPOSE									# To Define the Container Port 
+			WORKDIR									# To set the current working directory within the Container 
+			CMD										# To set the default start-up command to the container 
+													  This Command can be changed at run-time.
+			ENTRYPOINT								# To set the default start-up command to the container 
+													  This Command cannot be changed at run-time.	 
+													  
+													  
+	Containerize the Application::::
+	
+	vi Dockerfile
+	
+		FROM tomcat:8.0
+		COPY target/*.war /usr/local/tomcat/webapps
+		EXPOSE 8080	
+		
+	
+	usermod -aG docker devopsadmin	
+		
+
+		
+#########################
+Day 23 - 9th July 2026
+#########################
+
+	Container Orchestration Tool :	
+	
+		- Docker Compose 
+		
+		- Docker Swarm 
+		
+		- Kubernetes
+		
+		
+	Containerization :::
+	
+		Deploy a Micro-Service : User_Sign_Up
+		
+			- 3-Tier Application Architecture :
+			
+				- Front-End Layer		# User Interface		C1 
+				
+				- Application Layer 	# Business Logic 		C2 
+				
+				- Backed Layer 			# Database 				C3		
+	
+		
+		
+		- Docker Compose ::: Used to execute Multiple Containers as a service.
+
+	- Docker Compose 
+	
+		- Is an extension/Plugin to Docker Engine.
+		- Is used to run multiple containers as a Service!
+		- Docker Compose uses the Yaml file to create the Service definitions
+		
+			Any Container that is part of a Service :
+		
+				should be in-sync with other container within the service 
+				
+				
+				Start/Stop all these container at the same time.
+		
+		
+		
+		Work with Docker Compose ::
+		
+			Install Docker_Compose
+			https://docs.docker.com/compose/
+			
+			https://docs.docker.com/compose/install/linux/		
+		
+		
+# Manual Installation of Docker Compose :::
+			
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose	
+		
+
+docker compose version
+
+vi docker-compose.yaml
+
+
+
+### Yaml Files are based on Keys & Values -- key:value Pairs
+
+version: '3'
+services:
+  webserv1:
+    image: "tomcat:8.0"						# mywebapp_v1.0 ==> mywebapp_v2.0
+    ports:
+      - 8098:8080
+  dbserv1:
+    image: "redis:alpine"
+	
+docker compose up 							# Start the Service 
+
+docker compose down 						# Stop the Service 
+			
+			
+			
+	Deploy a Micro-Service : User_Sign_Up
+	
+		- 3-Tier Application Architecture :
+		
+			- Front-End Layer		# User Interface		C1.1,1.2,1.3 
+			
+			- Application Layer 	# Business Logic 		C2.1,2.2,2.3 
+			
+			- Backed Layer 			# Database 				C3.1,3.2,3.3
+			
+			
+docker compose up 
+
+
+	- Replication of Containers are not possible using Docker Compose.
+	
+	
+Environments:
+
+	Dev 
+	
+	Build 
+	
+	QA 
+	
+	UAT  				=========>			Prod Server1,2,3,4,5
+	
+											C1.1,1.2,1.3 
+											
+												mywebapp_v2.0
+
+Container Orchestration Tools :
+
+	- Docker Swarm ::::
+	
+		- Docker Swarm is one the Container Orchestration Tools.
+		- It is meant only for Docker Containers.
+		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
+		
+		- We cannot do Auto-Scaling or Load Balancing!		
+
+
+	App Service:
+	
+		3 replicas of Containers ==> 
+		
+		
+	- Kubernetes :::
+		
+			- It is an Open-Source Container Orchestration Tool 
+			- Kubernetes is used to Deploy any type of Containers.
+			- It is used to ensure high availability of the Applications/services running thru Containers.
+			- Used to Ensure High Availability of Containers by creating Replicas of Containers/Pods.
+			- It supports Auto-Scaling & Load Balancing.	
+			- Supports self-healing.
+			
+			- Used to deploy the Micro-Service Based Applications 
+			
+		Continuous Deployment ::
+		
+			- It is the process to release the changes to production environment, without any manual intervension/Approvals..
+			- During the process of application upgrade or downgrade, there is no downtime
+			- Zero Downtime can be achieved only with the Micro-Service based Application Architecture.
+			- Is the matured level of DevOps. 
+			
+			
+	- Managed Kubernetes Services :
+	
+	
+		AWS 	: EKS 
+		
+		Azure 	: AKS 
+		
+		GCP 	: GCE
+		
