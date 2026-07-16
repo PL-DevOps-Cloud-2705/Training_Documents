@@ -207,3 +207,163 @@ Day 24 - 10th July 2026
 				
 					12. Execute Kubeadm Join Command 		# To attach the Worknodes with Kubernetes Master Node.
 		
+
+
+#########################
+Day 25 - 13th July 2026
+#########################
+			
+	- Pods
+	
+	- Namespaces 
+	
+	- Controller Objects :::
+	
+		- Deployment Objects 
+		- Replicasets 
+		
+
+		ReplicaSet :::
+		
+			--> Replicaset is used to execute the specific no. of pods in the cluster.
+			--> Replicaset uses the Set Based Operator
+			--> Used to replicate the pods and able to scale up/down
+			--> The Replicasets will be automatically created, while creating Deployment Controller Object.
+		
+		
+		Deployment Controller Object :::
+		
+			--> It is used to deploy the pods and ensure high availability of pods by creating pod replicas 
+			--> 1. Create Muliple instance/replicas/copies of pods 
+				2. Used to Scale-Up / Scale-Down the Pods 
+				3. Used to Upgrade the application pods 
+				4. Used to Down-grade/roll-back the application pods
+			--> The upgrade/down-grade of application pods can be done without any downtime. 
+			--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.
+				- Supports self-healing.		
+			
+			
+			web_app_image:v1.0		==> 	web_app_image:v1.1
+			
+			pod_1.1:v1.0			==>		pod_1.1:v1.1	
+			pod_1.2:v1.0			==>		pod_1.2:v1.1
+			pod_1.3:v1.0			==>		pod_1.3:v1.0
+				
+				
+		Create Manifest file to work with Deployment Controller Object ::::		
+		
+		Deployment Controller Object creates :
+		
+			- Deployment 
+			- Replicaset
+			- Pod Instances 		
+		
+		
+	- Kubernetes Namespace :
+	
+		- Logical Partitioning of Kubernetes Cluster.
+		- Can be created based on the Environments(DEV/QA/UAT/PROD)/Teams(Dev_team1/Dev_team2/QA_Team)
+		
+		
+		- Namespaces are used to perform deployment of pods in various environments.
+
+
+#########################
+Day 26 - 14th July 2026
+#########################	
+
+		Deployment Controller Object :::
+		
+			--> It is used to deploy the pods and ensure high availability of pods by creating pod replicas 
+			--> 1. Create Muliple instance/replicas/copies of pods 
+				2. Used to Scale-Up / Scale-Down the Pods 
+				3. Used to Upgrade the application pods 
+				4. Used to Down-grade/roll-back the application pods
+			--> The upgrade/down-grade of application pods can be done without any downtime. 
+			--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.
+				- Supports self-healing.		
+			
+			
+			web_app_image:v1.0		==> 	web_app_image:v1.1
+			
+			pod_1.1:v1.0			==>		pod_1.1:v1.1	
+			pod_1.2:v1.0			==>		pod_1.2:v1.1
+			pod_1.3:v1.0			==>		pod_1.3:v1.0
+				
+				
+		Create Manifest file to work with Deployment Controller Object ::::		
+		
+		Deployment Controller Object creates :
+		
+			- Deployment 
+			- Replicaset
+			- Pod Instances 		
+			
+	- Discuss about Volumes ::
+	
+		- To Maintain the Persistant Data 
+	
+			- Hostpath Volume ::
+			
+				- Volume create on the Host Machine 
+				- It is applicable at the Pod level 
+
+	
+		- NodePort / ClusterIP / LoadBalancer	
+		
+		
+	- Services 
+	
+		- NodePort / ClusterIP / LoadBalancer		
+
+
+
+# kdeploy.yaml		
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loksai-eta-deploy
+  labels:
+    app: loksai-eta-deploy-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: loksai-eta-app
+  template:
+    metadata:
+      labels:
+        app: loksai-eta-app
+    spec:
+      containers:
+      - name: loksai-eta-container
+        image: loksaieta/plwebappimg:v1.0
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loksai-eta-np-service
+  labels:
+    app: loksai-eta-app
+spec:
+  selector:
+    app: loksai-eta-deploy-lbl
+
+  type: NodePort
+  ports:
+  - nodePort: 31028
+    port: 8080
+    targetPort: 8080
+	
+	
+Next:::
+
+	NodePort, ClusterIP, LoadBalancer Service(AWS)
+
+	Deployment Object
+	
+	Setup - CICD Pipeline using Jenkins, Docker & Kubernetes 
+	
