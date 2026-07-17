@@ -1,0 +1,132 @@
+###update vi etc/ansible/hosts
+
+[testnodes]
+samplenode1 ansible_ssh_host=172.31.47.143 ansible_ssh_user=ansibleadmin
+samplenode2 ansible_ssh_host=172.31.38.156 ansible_ssh_user=ansibleadmin
+
+[devnodes]
+samplenode3 ansible_ssh_host=172.31.38.156 ansible_ssh_user=ansibleadmin
+samplenode4 ansible_ssh_host=172.31.38.156 ansible_ssh_user=ansibleadmin
+
+[Database_servers]
+dbnode1 ansible_ssh_host=172.31.44.69 ansible_ssh_user=ansibleadmin
+dbnode2 ansible_ssh_host=172.31.35.100 ansible_ssh_user=ansibleadmin
+
+[QA_Test_Servers]
+	Test_Serv1 
+
+[DB_Server] 
+	DB_Serv1
+	DB_Serv2
+	DB_Serv2
+
+[Web_Server] 
+	Web_Serv1
+	Web_Serv2
+	Web_Serv2
+
+#**************************************************************************************************************************
+#hosts file is the default Inventory file for ansible 
+#**************************************************************************************************************************
+#Access thru Ansible Controller :
+#**************************************************************************************************************************
+
+ansible <hosts_name> -m <module_name> -i <inventory_file>
+
+ansible testnodes -m ping 
+
+ansible devnodes -m ping 
+
+
+ansible dev_server_grp1 -m ping -i dev_servers
+
+#host machines can be identified using :
+# all | group_name | individual_host_name
+
+[testnodes]
+samplenode1 ansible_ssh_host=172.31.45.162 ansible_ssh_user=ansibleadmin
+samplenode2 ansible_ssh_host=172.31.40.208 ansible_ssh_user=ansibleadmin
+
+#**************************************************************************************************************************
+#Access thru Ansible Controller :
+#**************************************************************************************************************************
+Ansible Modules: Eg.: 
+ansible testnodes -m ping
+
+ansible all -m ping ### will ping all hosts from /etc/ansible/hosts file
+
+ansible samplenode1 -m ping
+ansible samplenode2 -m ping
+
+#or using user defined Inventory file
+#ansible ansible-node1 -m ping -i myinventoryfile.txt
+
+
+ansible samplenode1 -m ping -i myinventoryfile.txt
+
+#**************************************************************************************************************************
+
+ansible samplenode2 -m ping
+
+ansible samplenode1 -m shell -a "sleep 20 ; echo 'hi'"
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ansible Facts!
+
+ansible samplenode1 -m setup
+ansible samplenode1 -m setup -a "filter=ansible_distribution"
+
+
+ansible testnodes -m setup -a "filter=ansible_distribution"
+##Transfer a file from Ansible Controller to Target Nodes using copy Module
+
+ansible samplenode1 -m copy -a "src=/etc/ansible/file1.txt dest=/home/ansibleadmin"
+
+ansible samplenode1 -m copy -a "src=/etc/ansible/file1.txt dest=/home/ansibleadmin backup=yes"
+
+##Transfer a file from Ansible Nodes to Ansible Controller using fetch Module
+
+ansible samplenode1 -m fetch -a "src=/home/ansibleadmin/filefrom_AN1.txt dest=/home/devopsadmin"
+
+https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+
+	### List all modules:
+	ansible-doc -l
+	### No. of modules:
+	ansible-doc -l | wc -l
+	### Search for specific modules:
+	ansible-doc -l | grep shel
+	### To know about any specific modules:
+	ansible-doc shell
+
+
+	https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
+
+
+
+
+
+	Ansible Playbooks :::
+
+	*.yaml scripts 		==> Key-value pair
+
+	- Playbook creation
+
+
+
+	Playbooks :::::
+
+		- *.yaml Script
+		- Defines the Tasks/Modules to be executed in target nodes.
+		- Reusability
+		
+		Tasks are collection of Modules 
+			Modules are the scripts/function
+		
+		
+	Build Server :::
+
+		- install jdk 
+		- install git 
+		- install maven
