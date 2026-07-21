@@ -1,0 +1,274 @@
+
+	
+########################
+Day 30 - 21st July 2026
+########################	
+
+
+	- IAC Tool => Infra-Structure Provisioning Tool 
+	
+	IAC - Terraform(All Platform)/Cloud Formation(AWS)/Azure Resource Manager(Azure) ::
+	
+		- Infra-Structure Provisioning Tool :::
+		
+			- Dynamically Create the Resources
+
+
+	Working with Terraform :
+	
+	
+	IAC Tool :
+	
+	Setup the Terraform Server :
+	
+	Capabilities ::
+	
+	Create Terraform Scripts to provision the resources :::
+	
+	Terminologies :
+	
+		- Terraform Registry:
+		
+		- Installation of Terraform
+		
+		- Install VSCode on Local Machine 
+		
+		- Install Terraform Extention for VS Code.
+		
+		- Create Terraform Script
+		
+		- AWS Credentials - Access Key and Secret Key
+		
+			--> AWS Console ::: email_id & Password 
+			
+			--> AWS Cli / API / SDK / ==> ::: AWS Access Key & Secret Key
+		
+
+	
+	
+	Terraform Working flow :
+	
+		- Identify the Scope (AWS/Azure/GCP)
+		- Write Terraform Script 
+		- Perform Terraform Init 	# To initialize Terraform Provider
+		- Perform Terraform Plan	# To Validate the Terraform Script
+		- Perform Terraform Apply	# To implement/Provision the actual resources 
+		
+	- Terraform Registry :	
+		- Terraform Provider for Resource Provisioning.
+		
+		https://registry.terraform.io/
+		
+		https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+		
+		
+		20 VMs ==> t2.medium ==> t3.large 
+		
+		
+	- Is a IAC Tool - Used to Provision the Infra-Structure
+	
+	- Terraform uses HCL - Hashi-Corp Declarative Language (JSON file format)
+	
+	- Terraform Working Model 
+	
+		--> Identify the Scope of the Infra-Structure (AWS/Azure)
+		
+		--> Write the Terraform Script 
+		
+		--> Perform Terraform Init 	- Initialize the Terraform Providers 	
+									- To Download Terraform Provider to Terraform Project
+		
+		--> Perform Terraform Plan - Preview the Terraform Script 
+		
+		--> Perform Terraform Apply - To Implement the actual Changes to the target infra-structure
+	
+		
+		- Install Terraform 		--> Local Windows Machine / Linux Machine 
+		
+				https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+				
+				https://developer.hashicorp.com/terraform/install			# Manual Installation 
+				
+				Using Manual Approach - Install Terraform on local windows machine 
+				
+					- Download Windows AMD64 Version Terraform -- zipfile 
+						- Right Click and Extract all 
+							- Get the Extracted Terraform Folder 
+								- Get the terraform - binary file 
+								
+					- Setup Environment Variable for terraform binary file 
+						- from windows start menu, search for enviroment variable 
+							- click of edit enviroment variable setting 
+								- find system properties dialog 
+									- select enviroment variables button
+										- On Environment Variables Dialog 
+											- goto to System Variable 
+												- Select path variable and edit 
+													- Click on New 
+														- add C:\Softwares\terraform_1.7.2_windows_amd64
+															- apply the changes and close the settings
+				
+		- Install Visual Studio Code 	- IDE used to create Terraform Projects 
+			
+				https://code.visualstudio.com/download
+				
+		
+		- Open Visual Studio Code - Create Terraform Project 		
+				
+					On Visual Studio Code : Install Terraform Extension for Visual Studio Code 
+			
+						HashiCorp Terraform
+				
+	
+		- Create Terraform Project ::::
+		
+			- Create Project on VS Code:
+			
+				
+
+	Using Terraform 
+	
+		-> Create/Add Resources 			+ 
+
+		-> Delete/Destroy Resources 		-
+		
+		-> Update/Change Resources 			~
+
+
+
+
+		
+provider "aws" {
+  region = "ap-south-1"
+  access_key = "ASDFASDFAEDC"
+  secret_key = "asdfasdfawerwe"  
+}
+
+resource "aws_instance" "instance1" {
+  ami           = "ami-0b1ed96948adabcd9"
+  instance_type = "t2.micro"
+  key_name = "AWS_MLOps_KeyPair"
+
+  tags = {
+    Name = "TESTSERVER"
+  }
+}
+		
+		
+	
+
+
+##############################################################################
+
+provider "aws" {
+  region = "ap-south-1"
+  access_key = "ASDFASDFAEDC"
+  secret_key = "asdfasdfawerwe"  
+}
+
+
+# Create VPC
+
+resource "aws_vpc" "myvpc9" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "myvpc9"
+  }
+}
+
+# Create Subnet 
+
+resource "aws_subnet" "mysubnet9" {
+  vpc_id     = aws_vpc.myvpc9.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "mysubnet9"
+  }
+}
+
+# Internet Gateway
+
+resource "aws_internet_gateway" "mygw9" {
+  vpc_id = aws_vpc.myvpc9.id
+
+  tags = {
+    Name = "mygw9"
+  }
+}
+
+# Route Table
+
+resource "aws_route_table" "myrt9" {
+  vpc_id = aws_vpc.myvpc9.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.mygw9.id
+  }
+
+  tags = {
+    Name = "myrt9"
+  }
+}
+
+# Route Table Association
+
+resource "aws_route_table_association" "myrta9" {
+  subnet_id      = aws_subnet.mysubnet9.id
+  route_table_id = aws_route_table.myrt9.id
+}
+
+# Security Groups
+
+resource "aws_security_group" "mysg9" {
+  name        = "mysg9"
+  description = "Allow inbound traffic"
+  vpc_id      = aws_vpc.myvpc9.id
+
+  ingress {
+    description      = "HTTP"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "mysg9"
+  }
+}
+
+# Create Instance
+
+resource "aws_instance" "instance9" {
+  ami           = "ami-0b1ed96948adabcd9"
+  instance_type = "t2.micro"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.mysubnet9.id
+  vpc_security_group_ids = [aws_security_group.mysg9.id]
+  key_name = "AWS_MLOps_KeyPair"
+
+  tags = {
+    Name = "Dummy_Server0"
+  }
+}
+	
