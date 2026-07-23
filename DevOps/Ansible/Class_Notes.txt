@@ -1,0 +1,154 @@
+#########################
+Day 27 - 16th July 2026
+#########################
+
+
+	- IAC Tools 
+	
+	- Configuration Management :::
+	
+		Ansible 
+		
+		Infra-Structure Management:
+		
+			- IAC - Infra-Structure As Code - Tools
+		
+			Infra-Structure Provisioning/Creating 	::: Terraform/CloudFormation/ARM
+			
+			Infra-Structure Configurations 			::: Ansible/Chef/Puppet
+			
+	
+	- Configuration Management using Ansible :::
+	
+		- Why Ansible?
+		
+		- Ansible Architecture & Components 
+		
+		- Installation and Configurations of Ansible Architecture
+		
+		- Core concepts :
+		
+			- Ansible Adhoc Commands 
+			
+			- Ansible Playbooks 
+			
+			- Ansible Playbook Variables
+			
+			- Handlers 
+			
+			- Loops 
+			
+			- Conditional Executions 
+			
+			- Ansible Roles 
+			
+			- Ansible Galaxy 
+			
+			
+			
+
+
+########################
+Day 28 - 17th July 2026
+########################
+
+		- Ansible Architecture & Components :::
+		
+		- Ansible controller 
+			- Ansible_Nodes
+
+			- Ansible Controller 
+			- Ansible Nodes 
+			- Modules 
+			- Inventory File
+				- Contains the details of the target servers 
+					- Host Name 
+					- User_Name 
+					- Credentials details 
+				- Here, the target servers can be maintained as groups 
+					Dev_servers
+						- Dev_Server1,2,3,4,5,........,100
+					Test_servers
+						- Test_Server1,2,3,4,5
+					
+					
+			- Ansible.config file 
+			
+			- using SSH Ansible Controller connect to Ansible Nodes.
+
+
+		
+		
+		
+		- Core concepts :
+		
+		- Ansible Adhoc Commands :::
+			- Used to execute single module at a time
+			- This cannot be reused.
+			
+				Eg.: Install Git :
+				
+					- apt install git 
+				
+		
+		- Ansible Playbooks :::
+		
+			- Used to execute series of modules on the target server 
+			- Playbooks are written using *.yaml scripts 
+			- Playbooks should be reuse
+		
+			- 	Eg.: Install Nginx :
+			
+					- apt install nginx 
+					- Start nginx 
+					
+			- 	Eg.: Install MySQL Database :
+			
+					- Install Pre-requisites
+					- Install MySQL_Server 
+					- Start MySQL_Server
+					- Create Database 
+			
+		
+		- Installation and Configurations of Ansible Architecture ::::
+
+
+				- Ansible controller (VM) 	==> Install Ansible
+					- Ansible_Node1 (VM)
+					- Ansible_Node2 (VM)
+
+			
+
+
+
+########################
+Day 29 - 20th July 2026
+########################
+
+			
+			- Ansible Playbook Variables
+			
+			- Handlers 
+			
+			- Loops 
+			
+			- Conditional Executions 
+			
+	
+	
+			
+			- Ansible Roles 
+			
+			- Ansible Galaxy 
+			
+
+
+Next:::
+
+	- Terraform :::
+	
+	- Monitoring Tools - Prometheus & Grafana :::
+	
+	- Python Fundamentals :::
+			
+		

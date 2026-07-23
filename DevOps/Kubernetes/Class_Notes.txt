@@ -367,3 +367,189 @@ Next:::
 	
 	Setup - CICD Pipeline using Jenkins, Docker & Kubernetes 
 	
+
+	
+#########################
+Day 27 - 16th July 2026
+#########################	
+
+	Services :
+	
+	- NodePort 
+	- ClusterIP 
+	- LoadBalancer Service(AWS)
+
+	Deployment Object
+	
+	Setup - CICD Pipeline using Jenkins, Docker & Kubernetes 
+	
+	
+	
+	Load Balancer Traffic Routing!
+	
+	
+	- Simple Routing 		
+	
+	- Host Based Routing 
+	
+	- Path Based Routing 
+	
+	- Query Based Routing 
+	
+	
+
+	www.google.com 
+	
+	www.google.maps.com
+	
+	www.google.gmail.com 						===> 	Host Based Routing 
+	
+	www.google.gmail.com/inbox 					===> 	Path Based Routing 
+
+	www.google.gmail.com/inbox?sender="xyz"		===> Query Based Routing 
+	
+	
+	ClusterIP Service:
+	
+		- Internal & Default Kubernetes Services
+		
+		
+
+CICD Pipeline using Jenkins & Kubernetes
+
+Servers:
+
+	Jenkins_Master 			
+		Jenkins_Slave 		
+		
+	Kubernetes_Master 
+		- Kubernetes_WorkerNode1
+		- Kubernetes_WorkerNode2
+		
+	
+Servers & Purpose :
+
+	Jenkins_Master 				-> Create Jenkins Projects & Schedule to run	
+		Jenkins_Slave 			-> To Build Application, Artifacts, Docker Application Images, Publish to Container Registry		
+		
+	Kubernetes_Master 			-> Deploy the Micro-Services
+		- Kubernetes_WorkerNode1
+		- Kubernetes_WorkerNode2	
+		
+		
+Servers & Tools :
+
+	Jenkins_Master 				-> git,jdk,jenkins 		
+		Jenkins_Slave 			-> git,jdk,maven,docker
+		
+	Kubernetes_Master 			-> Kubernetes Components
+		- Kubernetes_WorkerNode1
+		- Kubernetes_WorkerNode2
+		
+
+Onboard Applications to CICD Process:
+
+Stages of CICD  Pipeline :
+
+	- SCM-Checkout
+	- Application Build, Unit Test, Create Artifacts
+	- Application Image Build 
+	- Login to DockerHub 
+	- Push Application Image to DockerHub 
+	- Deploy Application Image to Kubernetes Cluster
+	
+
+Pre-requisites :
+
+	1. Source Code Repository -> pom.xml / Dockerfile / Kubernetes_Manifest files
+	
+	2. Create PAT on DockerHub and Updated it on the Jenkins Credential Manager
+	
+	3. Intergrate Kubernetes Master to Jenkins Master :::
+	
+			Use SSH Connection between Jenkins and Kubernetes Master
+			
+				Create a user in Kubernetes Master 
+				Grant Access to Kubectl
+				
+				Use Publish Over SSH Plugins to connect Kubernetes		
+		
+		
+		
+				To use the access token from your Docker CLI client:	
+
+				1. Run
+
+				docker login -u loksaieta
+				
+				
+				2. At the password prompt, enter the personal access token.
+
+				adfasdfasdf	
+				
+				
+
+Create Jenkins CICD Pipeline: 
+
+Stages of CICD  Pipeline :
+
+	- SCM-Checkout
+	- Application Build, Unit Test, Create Artifacts
+	- Application Image Build 
+	- Login to DockerHub 
+	- Push Application Image to DockerHub 
+	- Deploy Application Image to Kubernetes Cluster
+	
+	
+pipeline {
+    agent { label 'slave1' }
+    
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+		
+		DOCKERHUB_CREDENTIALS=credentials('dockerloginid')
+    } 
+    
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout for Java Application'
+				git 'https://github.com/PL-DevOps-Cloud-2705/java-webapp-project.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Java Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Application Image Build') {
+            steps {
+				sh "docker build -t loksaieta/pljavawebappimg:${BUILD_NUMBER} ."
+				sh 'docker image list'
+				sh "docker tag loksaieta/pljavawebappimg:${BUILD_NUMBER} loksaieta/pljavawebappimg:latest"
+            }
+        }
+		stage('Login2DockerHub') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+		stage('Publish_to_Docker_Registry') {
+			steps {
+				sh "docker push loksaieta/pljavawebappimg:latest"
+			}
+		}
+		stage('Deploy to Kubernetes') {
+            steps {
+				script {
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'Kubernetes-Master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f Kube_deploy.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			}	
+            }
+		}
+    }
+}
+
+
