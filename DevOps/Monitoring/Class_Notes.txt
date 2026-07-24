@@ -1,0 +1,90 @@
+	
+########################
+Day 30 - 21st July 2026
+########################	
+	
+	- Continuous Monitoring :::
+	
+		- To ensure business continuity.
+		- To ensure that the application and the Infra-Structure are up and running!
+		
+		Infra-Structure Monitoring :::
+		
+			- Production Servers / Database / Network / Storage 
+				
+			Tools: 
+			
+				- Prometheus / Grafana / Dynatrace / Nagios / Splunk
+				- Alert Management
+					75% as a threshold limit
+		
+		Application Monitoring :::
+		
+			- Micro-Services --> Database calls
+				
+			Tools :
+			
+				- AppDynamics / DataDog
+					
+					
+
+	Infra-Structure Monitoring - using Prometheus & Grafana :::::
+	
+	
+		- Architecture of Monitoring Tools
+		
+		
+
+########################
+Day 31 - 23th July 2026
+########################		
+
+		Infra-Structure Monitoring :::
+		
+			- Production Servers / Database / Network / Storage 
+				
+			Tools: 
+			
+				- Prometheus / Grafana / Dynatrace / Nagios / Splunk
+				- Alert Management
+					75% as a threshold limit
+					
+					
+		Prometheus 	--> Monitor the Infra-Structure and generate the Monitoring metrix
+		
+		Grafana 	-->	Visualization Tool - To create Monitoring Dashboards 
+		
+		
+		
+		1. Setup dedicated Monitoring Server:	# Install Prometheus & Grafana 
+		
+			-> Monitor the Target Nodes. 
+			
+			
+			VM1 Monitoring Server 	- Install Prometheus & Grafana
+			
+				VM2 - Target		- Install Node Exporter Agent 	
+				
+				
+	
+########################
+Day 31 - 23th July 2026
+########################		
+	
+	Demo 
+
+########################
+Day 32 - 24th July 2026
+########################
+
+
+	Setup Prometheus & Grafana!
+	
+		1. Setup dedicated Monitoring Server:	# Install Prometheus & Grafana 
+		
+			-> Monitor the Target Nodes. 
+			
+			
+			VM1 Monitoring Server 	- Install Prometheus & Grafana
+			
+				VM2 - Target		- Install Node Exporter Agent 		
